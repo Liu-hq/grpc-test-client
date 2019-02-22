@@ -59,7 +59,7 @@ eureka:
 hystrix:
   command:
     default:
-      execution:r
+      execution:
         isolation:
           thread:
             timeoutInMilliseconds: 10000
