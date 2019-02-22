@@ -59,7 +59,7 @@ eureka:
 hystrix:
   command:
     default:
-      execution:
+      execution:r
         isolation:
           thread:
             timeoutInMilliseconds: 10000
@@ -71,7 +71,7 @@ server:
 grpc:
   client:
     demo-test-server:
-      address: discovery:///grpc-test
+      address: discovery:///grpc-test-server
       enableKeepAlive: true
       keepAliveWithoutCalls: true
       negotiationType: plaintext
