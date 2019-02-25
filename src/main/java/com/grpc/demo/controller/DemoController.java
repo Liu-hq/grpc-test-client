@@ -30,7 +30,7 @@ public class DemoController {
     private KafkaTemplate kafkaTemplate;
 
     @Autowired
-    private DemosService demoSrevice;
+    private DemosService demoService;
 
     @RequestMapping(value = "/testSendMsg/api")
     public Map testSendMsg() {
