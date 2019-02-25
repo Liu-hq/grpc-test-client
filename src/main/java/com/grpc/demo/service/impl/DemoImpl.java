@@ -4,6 +4,7 @@ package com.grpc.demo.service.impl;
 import com.grpc.demo.service.DemosService;
 import com.grpc.demo.utils.ReturnMessage;
 
+import com.liu.demo.demo.Demo;
 import com.liu.demo.demo.DemoRequest;
 import com.liu.demo.demo.DemoResponse;
 import com.liu.demo.demo.DemoServiceGrpc;
@@ -29,9 +30,13 @@ public class DemoImpl implements DemosService {
     public Map sendMessage(String age){
         Map result;
         try {
-            final DemoResponse response = this.serviceStub.sayHello(DemoRequest.newBuilder().setAge(Integer.valueOf(age)).build());
-            result = ReturnMessage.jsonData(true,response.getMessage(),"200","成功");
-            logger.info("收到返回消息，{}",response.getMessage());
+            DemoRequest.Builder builder = DemoRequest.newBuilder();
+            Demo.Builder demo = Demo.newBuilder();
+            demo.setName("刘会起");
+            demo.setSex("男");
+            final DemoResponse response = this.serviceStub.sayHello(builder.setDemo(demo).setAge(Integer.valueOf(age)).build());
+            result = response.getResultTest().getResultMap();
+            logger.info("收到返回消息，{}",response.getResultTest());
 
         } catch (final StatusRuntimeException e) {
             result = ReturnMessage.jsonData(false,"","300","失败");
